@@ -1,0 +1,57 @@
+:root {
+  --bg-color: pink;
+  --text-color: #2f2f2f;
+  --accent-color: #D7007A;
+  --card-color: #ffffff;
+}
+
+/* Základní reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Obecné styly */
+body {
+  --stripe-width: 55px;
+  font-family: Arial, Helvetica, sans-serif;
+  color: var(--text-color);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  background:
+    linear-gradient(
+      to right,
+      #a8d383 0,
+      #a8d383 var(--stripe-width),
+      transparent var(--stripe-width),
+      transparent calc(100% - var(--stripe-width)),
+      #a8d383 calc(100% - var(--stripe-width)),
+      #a8d383 100%
+    ),
+    linear-gradient(135deg, #ffe5ec 0%, #fcb6d0 100%);
+}
+
+/* Layout */
+.container {
+  background-color: var(--card-color);
+  padding: 2rem 3rem;
+  border-radius: 1rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  text-align: center;
+}
+
+/* Typografie */
+h1 {
+  color: var(--accent-color);
+  margin-bottom: 0.5rem;
+  font-size: 2.5rem;
+}
+
+p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
