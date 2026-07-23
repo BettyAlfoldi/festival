@@ -1,5 +1,7 @@
 # Auto detect text files and perform LF normalization
 * text=auto
+
+html
 <!DOCTYPE html>
 <html lang="cs">
 <head>
@@ -1381,10 +1383,82 @@
             Psí Kafe
           </a>
           <p class="footer-about">
+            Místo, kde dobrou kávu doplňuje radost, vrtící ocásky
+            a přátelská atmosféra.
+          </p>
+        </div>
 
+        <div>
+          <h3>Rychlé odkazy</h3>
+          <ul class="footer-links">
+            <li><a href="#o-nas">O nás</a></li>
+            <li><a href="#nabidka">Nabídka</a></li>
+            <li><a href="#pejsci">Naši pejsci</a></li>
+            <li><a href="#rezervace">Rezervace</a></li>
+          </ul>
+        </div>
 
+        <div>
+          <h3>Otevírací doba</h3>
+          <ul class="footer-links">
+            <li>Po–Pá: 9:00–20:00</li>
+            <li>So–Ne: 9:00–21:00</li>
+            <li>Svátky: dle oznámení</li>
+          </ul>
+        </div>
+      </div>
 
+      <div class="copyright">
+        <span>© <span id="year"></span> Psí Kafe. Všechna práva vyhrazena.</span>
+        <span>Vytvořeno s láskou a chlupy 🐶</span>
+      </div>
+    </div>
+  </footer>
 
+  <script>
+    const menuButton = document.querySelector(".menu-button");
+    const navLinks = document.querySelector(".nav-links");
+    const bookingForm = document.querySelector("#bookingForm");
+    const formMessage = document.querySelector("#formMessage");
+    const dateInput = document.querySelector("#date");
 
+    // Mobilní navigace
+    menuButton.addEventListener("click", () => {
+      const isOpen = navLinks.classList.toggle("open");
+      menuButton.setAttribute("aria-expanded", isOpen);
+      menuButton.textContent = isOpen ? "✕" : "☰";
+    });
 
+    document.querySelectorAll(".nav-links a").forEach(link => {
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("open");
+        menuButton.setAttribute("aria-expanded", "false");
+        menuButton.textContent = "☰";
+      });
+    });
 
+    // Nelze rezervovat datum v minulosti
+    const today = new Date();
+    const localToday = new Date(
+      today.getTime() - today.getTimezoneOffset() * 60000
+    ).toISOString().split("T")[0];
+
+    dateInput.min = localToday;
+
+    // Ukázkové zpracování formuláře
+    bookingForm.addEventListener("submit", event => {
+      event.preventDefault();
+
+      formMessage.style.display = "block";
+      bookingForm.reset();
+      dateInput.min = localToday;
+
+      setTimeout(() => {
+        formMessage.style.display = "none";
+      }, 6000);
+    });
+
+    document.querySelector("#year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
